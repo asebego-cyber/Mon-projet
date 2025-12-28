@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Nos Biens</title>
+<style>
+body{margin:0;font-family:Arial;background:#f2f5f9}
+header{background:linear-gradient(135deg,#155a96,#1e73be);color:#fff;padding:25px;text-align:center}
+nav a{color:#fff;margin:0 10px;text-decoration:none;font-weight:bold}
+.container{max-width:1200px;margin:auto;padding:40px 20px}
+select{padding:10px;border-radius:6px;width:200px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;margin-top:20px}
+.card{background:#fff;border-radius:10px;overflow:hidden;cursor:pointer;box-shadow:0 6px 15px rgba(0,0,0,.15)}
+.card img{width:100%;height:200px;object-fit:cover}
+.card-content{text-align:center;padding:15px}
+.badge{background:#e63946;color:#fff;padding:5px 10px;border-radius:5px;font-size:12px}
+.price{color:#155a96;font-weight:bold}
+.modal,.image-modal{display:none;position:fixed;inset:0;justify-content:center;align-items:center}
+.modal{background:rgba(0,0,0,.8)}
+.modal-content{background:#fff;padding:20px;border-radius:10px;max-width:900px;width:90%}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.gallery img{width:100%;height:150px;object-fit:cover;border-radius:6px;cursor:pointer}
+.image-modal{background:rgba(0,0,0,.9);z-index:9999}
+.image-modal img{max-width:90%;max-height:90%;border-radius:10px}
+.close{cursor:pointer;color:#e63946;font-weight:bold;text-align:right}
+footer{background:#155a96;color:#fff;text-align:center;padding:15px;margin-top:40px}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Nos Biens</h1>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="biens.html">Biens</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<div class="container">
+<select id="filter">
+  <option value="all">Tous</option>
+  <option value="Maison">Maison</option>
+  <option value="Appartement">Appartement</option>
+  <option value="Studio">Studio</option>
+</select>
+
+<div class="cards" id="cards"></div>
+</div>
+
+<footer>© 2025 Agence BleuAzur</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <div class="close" onclick="closeModal()">✖</div>
+    <h2 id="title"></h2>
+    <p id="info"></p>
+    <p class="price" id="price"></p>
+    <div class="gallery" id="gallery"></div>
+  </div>
+</div>
+
+<div class="image-modal" id="imageModal" onclick="closeImage()">
+  <img id="imageModalImg">
+</div>
+
+<script>
+const biens=[
+ {type:"Maison", titre:"Maison familiale", surface:"120 m²", prix:"250 000 €",
+    images:["image/D1.jpg","image/D2.jpg","image/D3.jpg","image/D4.jpg","image/D5.jpg","image/D6.jpg","image/D7.jpg","image/D8.jpg"]},
+  {type:"Appartement", titre:"Appartement moderne", surface:"70 m²", prix:"180 000 €",
+    images:["image/A1.jpg","image/A2.jpg","image/A3.jpg","image/A4.jpg"]},
+  {type:"Studio", titre:"Studio centre-ville", surface:"30 m²", prix:"95 000 €",
+    images:["image/S1.jpg","image/S2.jpg","image/S3.jpg","image/S4.jpg","image/S5.jpg","image/S6.jpg"]}
+];
+ 
+
+const cards=document.getElementById("cards");
+
+function afficher(list){
+ cards.innerHTML="";
+ list.forEach(b=>{
+  cards.innerHTML+=`
+   <div class="card" onclick='openModal(${JSON.stringify(b)})'>
+    <img src="${b.images[0]}">
+    <div class="card-content">
+     <span class="badge">${b.type}</span>
+     <h3>${b.titre}</h3>
+     <p>${b.surface}</p>
+     <p class="price">${b.prix}</p>
+    </div>
+   </div>`;
+ });
+}
+
+function openModal(b){
+ modal.style.display="flex";
+ title.innerText=b.titre;
+ info.innerText=`${b.type} – ${b.surface}`;
+ price.innerText=b.prix;
+ gallery.innerHTML="";
+ b.images.forEach(img=>{
+  gallery.innerHTML+=`<img src="${img}" onclick="openImage('${img}')">`;
+ });
+}
+
+function closeModal(){modal.style.display="none"}
+
+function openImage(src){
+ imageModal.style.display="flex";
+ imageModalImg.src=src;
+}
+
+function closeImage(){imageModal.style.display="none"}
+
+filter.onchange=e=>{
+ const v=e.target.value;
+ afficher(v==="all"?biens:biens.filter(b=>b.type===v));
+};
+
+afficher(biens);
+</script>
+
+</body>
+</html>

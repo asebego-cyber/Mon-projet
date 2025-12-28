@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Contact</title>
+<style>
+body { margin:0; font-family:Arial; background:#f2f5f9; }
+header { background:linear-gradient(135deg,#155a96,#1e73be); color:white; padding:25px; text-align:center; }
+nav a { color:white; margin:0 10px; text-decoration:none; font-weight:bold; }
+.container { max-width:600px; margin:auto; padding:40px 20px; background:white; border-radius:10px; box-shadow:0 6px 15px rgba(0,0,0,.15); }
+input, textarea, button { width:100%; padding:10px; margin-top:10px; border-radius:6px; border:1px solid #ccc; }
+button { background:#155a96; color:white; border:none; cursor:pointer; font-weight:bold; }
+footer { background:#155a96; color:white; text-align:center; padding:15px; margin-top:40px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Contact</h1>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="biens.html">Biens</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<div class="container">
+  <form onsubmit="alert('Message envoyé !'); return false;">
+    <input type="text" placeholder="Nom" required>
+    <input type="email" placeholder="Email" required>
+    <textarea rows="5" placeholder="Message"></textarea>
+    <button type="submit">Envoyer</button>
+  </form>
+</div>
+
+<footer>© 2025 Agence BleuAzur</footer>
+</body>
+</html>

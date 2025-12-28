@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Lieu du bien</title>
+<style>
+body { margin:0; font-family:Arial; background:#f2f5f9; }
+header { background:linear-gradient(135deg,#155a96,#1e73be); color:white; padding:25px; text-align:center; }
+.container { max-width:900px; margin:auto; padding:40px 20px; background:white; border-radius:10px; box-shadow:0 6px 15px rgba(0,0,0,.15); }
+h2 { color:#155a96; }
+.map { margin-top:20px; width:100%; height:400px; border-radius:10px; overflow:hidden; }
+a { display:inline-block; margin-top:20px; color:#155a96; text-decoration:none; font-weight:bold; }
+</style>
+</head>
+<body>
+<header>
+  <h1>📍 Lieu du bien</h1>
+</header>
+<div class="container">
+  <h2 id="ville"></h2>
+  <p id="adresse"></p>
+  <div class="map">
+    <iframe id="map" width="100%" height="100%" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+  <a href="biens.html">← Retour aux biens</a>
+</div>
+
+<script>
+const lieux=[
+  {ville:"Nice", adresse:"12 Avenue de la Mer", map:"https://maps.google.com/maps?q=Nice&t=&z=13&ie=UTF8&iwloc=&output=embed"},
+  {ville:"Marseille", adresse:"45 Rue du Port", map:"https://maps.google.com/maps?q=Marseille&t=&z=13&ie=UTF8&iwloc=&output=embed"},
+  {ville:"Cannes", adresse:"8 Boulevard de la Croisette", map:"https://maps.google.com/maps?q=Cannes&t=&z=14&ie=UTF8&iwloc=&output=embed"},
+  {ville:"Antibes", adresse:"21 Rue des Jardins", map:"https://maps.google.com/maps?q=Antibes&t=&z=14&ie=UTF8&iwloc=&output=embed"},
+  {ville:"Monaco", adresse:"3 Avenue Princesse Grace", map:"https://maps.google.com/maps?q=Monaco&t=&z=14&ie=UTF8&iwloc=&output=embed"}
+];
+const lieu=lieux[Math.floor(Math.random()*lieux.length)];
+document.getElementById("ville").innerText=lieu.ville;
+document.getElementById("adresse").innerText=lieu.adresse;
+document.getElementById("map").src=lieu.map;
+</script>
+</body>
+</html>

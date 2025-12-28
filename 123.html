@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Nos Biens</title>
+<style>
+body { margin:0; font-family:Arial; background:#f2f5f9; }
+header { background:linear-gradient(135deg,#155a96,#1e73be); color:white; padding:25px; text-align:center; }
+nav a { color:white; margin:0 10px; text-decoration:none; font-weight:bold; }
+.container { max-width:1200px; margin:auto; padding:40px 20px; }
+select { padding:10px; border-radius:6px; width:200px; }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:25px; margin-top:20px; }
+.card { background:white; border-radius:10px; overflow:hidden; cursor:pointer; box-shadow:0 6px 15px rgba(0,0,0,.15); }
+.card img { width:100%; height:200px; object-fit:cover; }
+.card-content { padding:15px; text-align:center; }
+.badge { background:#e63946; color:white; padding:5px 10px; border-radius:5px; font-size:12px; display:inline-block; margin-bottom:10px; }
+.price { color:#155a96; font-weight:bold; margin-top:5px; }
+.card-content a { display:inline-block; margin-top:10px; color:#155a96; text-decoration:none; font-weight:bold; }
+.card-content a:hover { text-decoration:underline; }
+.modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,.8); justify-content:center; align-items:center; }
+.modal-content { background:white; padding:20px; border-radius:10px; max-width:900px; width:90%; }
+.gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-top:15px; }
+.gallery img { width:100%; height:150px; object-fit:cover; border-radius:6px; }
+.close { text-align:right; font-weight:bold; color:#e63946; cursor:pointer; }
+footer { background:#155a96; color:white; text-align:center; padding:15px; margin-top:40px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Nos Biens</h1>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="biens.html">Biens</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<div class="container">
+  <select id="filter">
+    <option value="all">Tous les biens</option>
+    <option value="Maison">Maison</option>
+    <option value="Appartement">Appartement</option>
+    <option value="Studio">Studio</option>
+  </select>
+
+  <div class="cards" id="cards"></div>
+</div>
+
+<footer>© 2025 Agence BleuAzur</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <div class="close" onclick="closeModal()">✖</div>
+    <h2 id="title"></h2>
+    <p id="info"></p>
+    <p class="price" id="price"></p>
+    <div class="gallery" id="gallery"></div>
+    <a id="lieuLink" href="lieu.html">📍 Voir le lieu</a>
+  </div>
+</div>
+
+<script>
+const biens = [
+  {type:"Maison", titre:"Maison familiale", surface:"120 m²", prix:"250 000 €",
+    images:["image/D1.jpg","image/D2.jpg","image/D3.jpg","image/D4.jpg","image/D5.jpg","image/D6.jpg","image/D7.jpg","image/D8.jpg"]},
+  {type:"Appartement", titre:"Appartement moderne", surface:"70 m²", prix:"180 000 €",
+    images:["image/A1.jpg","image/A2.jpg","image/A3.jpg","image/A4.jpg"]},
+  {type:"Studio", titre:"Studio centre-ville", surface:"30 m²", prix:"95 000 €",
+    images:["image/S1.jpg","image/S2.jpg","image/S3.jpg","image/S4.jpg","image/S5.jpg","image/S6.jpg"]}
+];
+
+const cards = document.getElementById("cards");
+
+function afficher(liste){
+  cards.innerHTML="";
+  liste.forEach(b=>{
+    cards.innerHTML+=`
+      <div class="card" onclick='openModal(${JSON.stringify(b)})'>
+        <img src="${b.images[0]}">
+        <div class="card-content">
+          <span class="badge">${b.type}</span>
+          <h3>${b.titre}</h3>
+          <p>${b.surface}</p>
+          <p class="price">${b.prix}</p>
+        </div>
+      </div>`;
+  });
+}
+
+function openModal(b){
+  document.getElementById("modal").style.display="flex";
+  document.getElementById("title").innerText=b.titre;
+  document.getElementById("info").innerText=`${b.type} – ${b.surface}`;
+  document.getElementById("price").innerText=b.prix;
+  const gallery=document.getElementById("gallery");
+  gallery.innerHTML="";
+  b.images.forEach(img=>gallery.innerHTML+=`<img src="${img}">`);
+  document.getElementById("lieuLink").href="lieu.html";
+}
+
+function closeModal(){ document.getElementById("modal").style.display="none"; }
+
+document.getElementById("filter").addEventListener("change", e=>{
+  const v=e.target.value;
+  afficher(v==="all"?biens:biens.filter(b=>b.type===v));
+});
+
+afficher(biens);
+</script>
+</body>
+</html>
