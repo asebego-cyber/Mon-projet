@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Agence Immobilière BleuAzur</title>
+<style>
+body { margin:0; font-family:Arial, sans-serif; background:#f2f5f9; }
+header {
+  background: url('image/banner.jpg') no-repeat center center/cover;
+  color:white;
+  padding:100px 25px;
+  text-align:center;
+  position:relative;
+}
+header h1 { font-size:3em; margin:0 0 20px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+nav a {
+  color:white;
+  margin:0 15px;
+  text-decoration:none;
+  font-weight:bold;
+  font-size:1.1em;
+}
+nav a:hover { text-decoration:underline; }
+.container { max-width:1200px; margin:auto; padding:40px 20px; text-align:center; }
+.btn-biens, .btn-contact {
+  display:inline-block; padding:10px 25px; margin-top:20px; border-radius:6px; text-decoration:none; font-weight:bold; font-size:1.1em;
+  transition:0.3s;
+}
+.btn-biens { background:#155a96; color:white; }
+.btn-biens:hover { background:#133f6a; }
+.btn-contact { background:#e63946; color:white; margin-left:15px; }
+.btn-contact:hover { background:#b83238; }
+h2 { color:#155a96; margin-bottom:20px; }
+.points-forts { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-top:30px; }
+.point { background:white; padding:20px; border-radius:10px; flex:1 1 250px; box-shadow:0 4px 10px rgba(0,0,0,.1); }
+.point h3 { color:#155a96; margin-bottom:10px; }
+footer { background:#155a96; color:white; text-align:center; padding:15px; margin-top:40px; }
+@media(max-width:768px){
+  header { padding:60px 15px; }
+  header h1 { font-size:2em; }
+  .points-forts { flex-direction:column; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Agence Immobilière BleuAzur</h1>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="biens.html">Biens</a>
+    <a href="contact.html">Contact</a>
+    <a href="lieu.html">localisation</a>
+  </nav>
+</header>
+
+<div class="container">
+  <p style="font-size:1.2em; color:#155a96;">Trouvez la maison de vos rêves avec BleuAzur !</p>
+
+  <a href="biens.html" class="btn-biens">Voir tous les biens</a>
+  <a href="contact.html" class="btn-contact">Nous contacter</a>
+
+  <h2>Pourquoi choisir BleuAzur ?</h2>
+  <div class="points-forts">
+    <div class="point">
+      <h3>Maisons de qualité</h3>
+      <p>Des biens soigneusement sélectionnés pour vous.</p>
+    </div>
+    <div class="point">
+      <h3>Emplacements idéaux</h3>
+      <p>Maisons et appartements dans les meilleurs quartiers.</p>
+    </div>
+    <div class="point">
+      <h3>Support personnalisé</h3>
+      <p>Notre équipe vous accompagne à chaque étape.</p>
+    </div>
+  </div>
+</div>
+
+<footer>© 2025 Agence BleuAzur</footer>
+
+</body>
+</html>
